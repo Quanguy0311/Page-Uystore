@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UY STORE - Kho App Android TV | Xem Phim, Thể Thao, Truyền Hình</title>
+<meta name="description" content="UY STORE - Kho ứng dụng miễn phí cho Android TV: Xem phim, Thể thao, Truyền hình, Camera, Trò chơi.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial;background:#0A1628;color:#fff}
+header{padding:20px;text-align:center;background:linear-gradient(135deg,#0A1628,#2a1a5e,#0e7490)}
+.logo{width:84px;height:84px;border-radius:20px;background:#f59e0b;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:900;color:#000;margin:0 auto}
+h1{margin:10px 0 4px;color:#fbbf24;letter-spacing:2px}p.sub{color:#cbd5e1;margin:0}
+.btns{display:flex;gap:10px;justify-content:center;margin:14px 0}.pill{padding:10px 18px;border-radius:999px;border:1px solid #ffffff33;background:#ffffff14;color:#fff}
+.search{max-width:520px;margin:0 auto;padding:0 16px}.search input{width:100%;padding:13px 16px;border-radius:999px;border:0;outline:none}
+.tabs{display:flex;gap:8px;overflow:auto;padding:14px 16px}.tab{white-space:nowrap;padding:9px 16px;border-radius:999px;background:#16233D;border:1px solid #ffffff22;color:#fff;cursor:pointer}.tab.active{background:#22c55e;color:#000;font-weight:700}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px 40px}.card{display:flex;align-items:center;gap:12px;background:#16233D;border-radius:16px;padding:14px;margin-bottom:12px}.icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}.card b{font-size:17px}.card small{color:#94a3b8}.dl{margin-left:auto;background:linear-gradient(90deg,#22c55e,#0ea5e9);color:#fff;border:0;padding:10px 14px;border-radius:999px;font-weight:700;white-space:nowrap;text-decoration:none}
+h2{margin:22px 0 12px}.how{background:#16233D;border-radius:16px;padding:16px;line-height:1.7}footer{text-align:center;color:#94a3b8;padding:24px;font-size:13px}
+</style></head><body>
+<header><div class="logo">UY</div><h1>UY STORE</h1><p class="sub">Kho app miễn phí cho Android TV</p><div class="btns"><a class="pill" href="#">❤️ Ủng hộ</a><a class="pill" href="#">📞 Liên hệ</a></div></header>
+<div class="search"><input id="q" placeholder="🔍 Tìm app: Netflix, FPT Play, K+..." oninput="filter()"></div>
+<div class="tabs" id="tabs"></div>
+<div class="wrap"><h2>🔥 Ứng Dụng Hot</h2><div id="list"></div>
+<h2>📖 Hướng dẫn cài đặt</h2><div class="how">1. Bấm <b>Bấm để tải</b><br>2. Trên TV cho phép cài đặt từ nguồn không xác định<br>3. Mở app và xem</div></div>
+<footer>UY STORE - uy-store.github.io | Tìm trên Google: UY STORE, UY TV, kho app UY STORE<br>Kho app bản quyền cho Android TV</footer>
+<script>
+const apps=[
+{n:"YouTube",c:"Giải trí",d:"98.200 lượt tải",e:"📺",g:"#ff0000",l:"https://www.youtube.com/"},
+{n:"Netflix",c:"Xem phim",d:"88.600 lượt tải",e:"🎬",g:"#e50914",l:"https://www.netflix.com/vn/"},
+{n:"VTV Go",c:"Truyền hình",d:"82.300 lượt tải",e:"📡",g:"#2563eb",l:"https://vtvgo.vn/"},
+{n:"TikTok",c:"Giải trí",d:"76.400 lượt tải",e:"🎵",g:"#000",l:"https://www.tiktok.com/"},
+{n:"FPT Play",c:"Thể thao",d:"67.500 lượt tải",e:"⚽",g:"#f97316",l:"https://fptplay.vn/"},
+{n:"VieON",c:"Xem phim",d:"59.800 lượt tải",e:"🎞️",g:"#7c3aed",l:"https://vieon.vn/"},
+{n:"Spotify",c:"Giải trí",d:"54.100 lượt tải",e:"🎧",g:"#1db954",l:"https://open.spotify.com/"},
+{n:"K+",c:"Thể thao",d:"48.900 lượt tải",e:"🏆",g:"#dc2626",l:"https://www.kplus.vn/"},
+{n:"TV360",c:"Truyền hình",d:"45.200 lượt tải",e:"📺",g:"#0891b2",l:"https://tv360.vn/"},
+{n:"Galaxy Play",c:"Xem phim",d:"37.200 lượt tải",e:"🌌",g:"#4f46e5",l:"https://galaxyplay.vn/"},
+{n:"Google Home",c:"Camera",d:"33.100 lượt tải",e:"🏠",g:"#64748b",l:"https://home.google.com/"},
+{n:"ESPN",c:"Thể thao",d:"38.700 lượt tải",e:"🏀",g:"#b91c1c",l:"https://www.espn.com/"},
+{n:"PUBG Mobile",c:"Trò chơi",d:"52.000 lượt tải",e:"🎮",g:"#ea580c",l:"https://www.pubgmobile.com/"},
+{n:"Roblox",c:"Trò chơi",d:"44.000 lượt tải",e:"🧩",g:"#dc2626",l:"https://www.roblox.com/"},
+{n:"Chrome TV",c:"Ứng dụng khác",d:"71.000 lượt tải",e:"🌐",g:"#2563eb",l:"https://www.google.com/chrome/"},
+];
+const cats=["Tất cả","Giải trí","Truyền hình","Camera","Xem phim","Thể thao","Trò chơi","Ứng dụng khác"];
+let cur="Tất cả";
+const tabs=document.getElementById("tabs");cats.forEach(c=>{let b=document.createElement("button");b.className="tab"+(c===cur?" active":"");b.textContent=c;b.onclick=()=>{cur=c;document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));b.classList.add("active");render()};tabs.appendChild(b)});
+function render(){let q=(document.getElementById("q").value||"").toLowerCase();let f=apps.filter(a=>(cur==="Tất cả"||a.c===cur)&&a.n.toLowerCase().includes(q));document.getElementById("list").innerHTML=f.map(a=>`<div class="card"><div class="icon" style="background:${a.g}">${a.e}</div><div><b>${a.n}</b><br><small>${a.c} • ${a.d}</small></div><a class="dl" href="${a.l}" target="_blank">⬇ Bấm để tải</a></div>`).join("")||"<p>Không tìm thấy app.</p>"}
+function filter(){render()}render();
+</script></body></html>
